@@ -7,12 +7,16 @@
     "removeComments": true,                            
     
     "strict": true,                                        
-
-    "baseUrl": "./src",                       
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/@types"
+    ],
+    "baseUrl": "./",                       
     "paths": {
-      "@entities/*": ["/entities/*"],
-      "@providers/*": ["/providers/*"],
-      "@repositories/*": ["/repositories/*"]
+      "@entities/*": ["src/entities/*"],
+      "@providers/*": ["src/providers/*"],
+      "@repositories/*": ["src/repositories/*"],
+      "@useCases/*": ["src/useCases/*"]
     },                            
     "esModuleInterop": true,                  
     "forceConsistentCasingInFileNames": true  
