@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    
+    "target": "es2017",                          
+    "module": "commonjs",                     
+    "outDir": "./dist",                                       
+    "removeComments": true,                            
+    
+    "strict": true,                                        
+
+    "baseUrl": "./src",                       
+    "paths": {
+      "@entities/*": ["/entities/*"],
+      "@providers/*": ["/providers/*"],
+      "@repositories/*": ["/repositories/*"]
+    },                            
+    "esModuleInterop": true,                  
+    "forceConsistentCasingInFileNames": true  
+  }
+}
