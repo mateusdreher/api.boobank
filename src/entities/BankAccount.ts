@@ -1,13 +1,13 @@
 import { uuid } from 'uuidv4';
 
-export class AccountInfos {
+export class BankAccount {
     public readonly cod_account?: string;
     public cod_usu: string;
-    public agency: number;
-    public account_number: number;
+    public agency: string;
+    public account_number: string;
     public verify_digit: number;
 
-    constructor(accountInfos: AccountInfos) {
+    constructor(accountInfos: BankAccount) {
         this.cod_usu = accountInfos.cod_usu;
         this.agency = accountInfos.agency;
         this.account_number = accountInfos.account_number;

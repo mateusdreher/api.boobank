@@ -10,7 +10,7 @@ ROUTER.get('/', (request: Request, response: Response) => {
     });
 });
 
-ROUTER.post('/user', (request: Request, response: Response) => {
+ROUTER.post('/register', (request: Request, response: Response) => {
     return registerUserController.handle(request, response);
 });
 
