@@ -1,7 +1,6 @@
 import { Address } from '@entities/Address';
 import { ISaveAddressDTO } from './SaveAddressDTO';
 import { IAddressRepository } from '@repositories/IAddressRepository';
-import { userInfo } from 'os';
 
 export class SaveAddresUseCase {
 
