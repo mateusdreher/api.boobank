@@ -5,7 +5,7 @@
     "module": "commonjs",                     
     "outDir": "./dist",                                       
     "removeComments": true,                            
-    
+    "strictPropertyInitialization": false,
     "strict": true,                                        
     "typeRoots": [
       "./node_modules/@types",
@@ -20,6 +20,9 @@
       "@services/*": ["src/services/*"]
     },                            
     "esModuleInterop": true,                  
-    "forceConsistentCasingInFileNames": true  
+    "forceConsistentCasingInFileNames": true ,
+
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
   }
 }

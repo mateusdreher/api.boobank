@@ -1,13 +1,15 @@
 import express from 'express';
 import cors from 'cors';
-import { ROUTER } from './routes';
+import { router } from './routes';
 import 'reflect-metadata';
+import { connect } from './database/connect';
 
-const APP = express();
+const app = express();
 
+connect();
 
-APP.use(express.json());
+app.use(express.json());
 // APP.use(cors);
-APP.use(ROUTER);
+app.use(router);
 
-export { APP };
+export { app };

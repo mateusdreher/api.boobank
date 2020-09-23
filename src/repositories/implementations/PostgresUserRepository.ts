@@ -1,23 +1,34 @@
 import { User } from '@entities/User';
 import { IUsersRepository } from '@repositories/IUsersRepository';
+import { getRepository, Repository } from 'typeorm';
 
 export class PostgresUserRepository implements IUsersRepository {
-    private users: User[] = [];
+    private repositoryORM: Repository<User>;
 
-    async findByEmail(email: string): Promise<User> {
-        const user = this.users.find(user => user.email === email);
+    async getRepositoryORM(): Promise<void> {
+        this.repositoryORM = getRepository(User);
+    }
+
+    async findByEmail(email: string): Promise<User | undefined> {
+        const user = await this.repositoryORM.findOne({where: { email } });
 
         return user;
     }
 
-    async findByUsername(username: string): Promise<User> {
-        const user = this.users.find(user => user.username === username);
+    async findByUsername(username: string): Promise<User | undefined> {
+        const user =  await this.repositoryORM.findOne({where: { username } });
+
+        return user;
+    }
+
+    async findByCpf(cpf: string): Promise<User | undefined> {
+        const user = await this.repositoryORM.findOne({ where: { cpf } });
 
         return user;
     }
 
     async register(user: User): Promise<string> {
-        this.users.push(user);
+        await this.repositoryORM.save(user);
 
         return user.cod_usu;
     }

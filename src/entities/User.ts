@@ -1,43 +1,49 @@
 import { uuid } from 'uuidv4';
+import { Entity, Column, PrimaryColumn } from 'typeorm';
 
+@Entity('users')
 export class User {
+    @PrimaryColumn()
     public readonly cod_usu?: string;
+
+    @Column()
     public username: string;
-    public pass: string;
+
+    @Column()
+    public password: string;
+
+    @Column()
     public email: string;
+
+    @Column()
     public first_name: string;
+
+    @Column()
     public last_name: string;
+
+    @Column()
     public cpf: string;
+
+    @Column()
     public rg: string;
-    public rua: string;
-    public numero: string;
-    public bairro: string;
-    public cidade: string;
-    public uf: string;
-    public pais: string;
-    public cep: string;
     
     constructor(user: User) {
-        this.username = user.username;
-        this.email = user.email;
-        this.pass = user.pass;
-        this.first_name = user.first_name;
-        this.last_name = user.last_name;
-        this.cpf = user.cpf;
-        this.rg = user.rg;
-        this.rua = user.rua;
-        this.numero = user.numero;
-        this.bairro = user.bairro;
-        this.cidade = user.cidade;
-        this.uf = user.uf;
-        this.pais = user.pais;
-        this.cep = user.cep;
 
-        if (!user.cod_usu) {
-            this.cod_usu = uuid();
-        }
-        else {
-            this.cod_usu = user.cod_usu;
+        if(user) {
+            this.username = user.username;
+            this.email = user.email;
+            this.password = user.password;
+            this.first_name = user.first_name;
+            this.last_name = user.last_name;
+            this.cpf = user.cpf;
+            this.rg = user.rg;
+    
+            if (!user.cod_usu) {
+                this.cod_usu = uuid();
+            }
+            else {
+                this.cod_usu = user.cod_usu;
+            }
         }
     }
 }

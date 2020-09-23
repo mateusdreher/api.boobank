@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
 import { RegisterUserUseCase } from './RegisterUserUseCase';
-import { User } from '@entities/User';
 import { createBankAccountUseCase } from '@useCases/CreateBankAcount';
+import { IRegisterUserDTO } from './RegisterUserDTO';
 
 export class RegisterUserController {
 
-    private user: User;
+    private user: IRegisterUserDTO;
 
     constructor(private registerUserCase: RegisterUserUseCase) {
     }
@@ -13,9 +13,8 @@ export class RegisterUserController {
     async handle(request: Request, response: Response): Promise<Response> {
 
         this.user = request.body;
-        // const { username, pass, email, first_name, last_name, cpf, rg, rua, numero, bairro, cidade, uf, pais } = request.body;
-
-        if (this.user.username === undefined || this.user.pass === undefined || this.user.email === undefined) {
+        
+        if (Object.keys(this.user).length === 0) {
             return response.status(400).json({
                 res: {
                     message: 'Body cannot be empty',
@@ -29,7 +28,7 @@ export class RegisterUserController {
 
             const created_account = await createBankAccountUseCase.execute(cod_usu);
 
-            return response.status(201).send({ // Aqui eu chamo o create account
+            return response.status(201).send({ 
                 res: {
                     message: 'Conta criada com sucesso',
                     data: created_account
@@ -40,7 +39,7 @@ export class RegisterUserController {
             return response.status(400).json({
                 res: {
                     message: error.message || 'Unexpected Error',
-                    data: error
+                    data: {}
                 }
             });
         }

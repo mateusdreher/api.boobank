@@ -20,20 +20,21 @@ export class CreateBankAccountUseCase {
     async execute(cod_usu: string):Promise<BankAccount> {
 
         this.account.cod_usu = cod_usu;
-        this.account.account_number = generateAccountNumber();
-    
-        const userAlreadyHaveAccount = this.bankAccountRepository.findByCodUsu(this.account.cod_usu);
-        const accountNumberAlreadyExists = this.bankAccountRepository.findByAccountNumber(this.account.account_number);
+        this.account.account_number = await generateAccountNumber();
 
-        // if (userAlreadyHaveAccount) {
-        //     throw new Error('Usuário já possui conta');
-        // }
-        // if (accountNumberAlreadyExists && accountNumberAlreadyExists != undefined) {
-        //     throw new Error('Número de conta já existe');
-        // }
+        this.bankAccountRepository.getRepositoryORM();
+        
+        const userAlreadyHaveAccount = await this.bankAccountRepository.findByCodUsu(this.account.cod_usu);
+        const accountNumberAlreadyExists = await this.bankAccountRepository.findByAccountNumber(this.account.account_number);
 
+        if (userAlreadyHaveAccount) {
+            throw new Error('Usuário já possui conta');
+        }
+        if (accountNumberAlreadyExists) {
+            throw new Error('Número de conta já existe');
+        }
 
-        return await this.bankAccountRepository.create(this.account);
+        return await this.bankAccountRepository.create(new BankAccount(this.account));
 
     }
 

@@ -1,7 +1,8 @@
 import { BankAccount } from '@entities/BankAccount';
 
 export interface IBankAccountRepository {
-    findByCodUsu(cod_usu: string): Promise<BankAccount>;
-    findByAccountNumber(accountNumber: string): Promise<BankAccount>;
+    getRepositoryORM(): Promise<void>;
+    findByCodUsu(cod_usu: string): Promise<BankAccount | undefined>;
+    findByAccountNumber(accountNumber: string): Promise<BankAccount | undefined>;
     create(account:BankAccount):Promise<BankAccount>;
 }

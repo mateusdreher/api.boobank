@@ -1,24 +1,32 @@
 import { IBankAccountRepository } from '@repositories/IBankAccountRepository';
 import { BankAccount } from '@entities/BankAccount';
+import { getRepository, Repository } from 'typeorm';
 
 export class PostgreAccountRepository implements IBankAccountRepository {
-    private accounts: BankAccount[] = [];
+    private repositoryORM: Repository<BankAccount>;
 
-    async findByAccountNumber(account_number: string): Promise<BankAccount> {
-
-        const ac_number = this.accounts.find(account => account.account_number === account_number);
-        console.log(ac_number);
-        return ac_number;
+    async getRepositoryORM(): Promise<void> {
+        this.repositoryORM = getRepository(BankAccount);
     }
 
-    async findByCodUsu(cod_usu: string):Promise<BankAccount> {
+    async findByAccountNumber(account_number: string): Promise<BankAccount | undefined> {
 
-        return this.accounts.find(account => account.cod_usu === cod_usu);
+        const account = await this.repositoryORM.findOne({ where: { account_number } });
+        
+        return account;
+    }
+
+    async findByCodUsu(cod_usu: string):Promise<BankAccount | undefined> {
+
+        const account = await this.repositoryORM.findOne({ where: { cod_usu } });
+        
+        return account;
 
     }
 
     async create(account: BankAccount): Promise<BankAccount> {
-        this.accounts.push(account);
+        
+        await this.repositoryORM.save(account);
 
         return account;
     }
