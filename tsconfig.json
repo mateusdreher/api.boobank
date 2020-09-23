@@ -23,6 +23,7 @@
     "forceConsistentCasingInFileNames": true ,
 
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "resolveJsonModule": true
   }
 }
