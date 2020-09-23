@@ -5,16 +5,24 @@
     "module": "commonjs",                     
     "outDir": "./dist",                                       
     "removeComments": true,                            
-    
+    "strictPropertyInitialization": false,
     "strict": true,                                        
-
-    "baseUrl": "./src",                       
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/@types"
+    ],
+    "baseUrl": "./",                       
     "paths": {
-      "@entities/*": ["/entities/*"],
-      "@providers/*": ["/providers/*"],
-      "@repositories/*": ["/repositories/*"]
+      "@entities/*": ["src/entities/*"],
+      "@providers/*": ["src/providers/*"],
+      "@repositories/*": ["src/repositories/*"],
+      "@useCases/*": ["src/useCases/*"],
+      "@services/*": ["src/services/*"]
     },                            
     "esModuleInterop": true,                  
-    "forceConsistentCasingInFileNames": true  
+    "forceConsistentCasingInFileNames": true ,
+
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
   }
 }
