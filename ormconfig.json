@@ -1,0 +1,17 @@
+{
+    "type": "postgres",
+    "host": "boobank-db.cshe40dc9lf1.sa-east-1.rds.amazonaws.com",
+    "port": 5432,
+    "username": "postgres",
+    "password": "fNh2uJm9Qc",
+    "database": "boobank",
+    "entities": [
+       "src/entities/**/*.ts"
+    ],
+    "migrations": [
+       "src/database/migrations/**/*.ts"
+    ],
+    "cli": {
+        "migrationsDir": "src/database/migrations"
+    }
+ }
