@@ -8,19 +8,21 @@ export class RegisterUserUseCase {
     constructor (private userRepository: IUsersRepository) {
     }
 
-    async execute(data: IRegisterUserDTO): Promise<string> {
+    async execute(data: IRegisterUserDTO): Promise<string | undefined> {
         
         this.userRepository.getRepositoryORM();
+
         const emailAlreadyExists = await this.userRepository.findByEmail(data.email);  
         const usernameAlreadyExists = await this.userRepository.findByUsername(data.username);
+
         data.password = await bcrypt.hash(data.password, 10);
 
         if (usernameAlreadyExists) {
-            throw new Error('username already exists');
+            throw new Error('Error: username already exists');
         }
         
         if (emailAlreadyExists) {
-            throw new Error('email already exists');
+            throw new Error('Error : email already exists');
         }
         
 

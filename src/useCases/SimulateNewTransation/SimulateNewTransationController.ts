@@ -1,19 +1,20 @@
 import { Request, Response } from 'express';
-import { RegisterUserUseCase } from './RegisterUserUseCase';
-import { createBankAccountUseCase } from '@useCases/CreateBankAcount';
+import { SimulateNewTransationUseCase } from './SimulateNewTransationUseCase';
 
-export class RegisterUserController {
 
-    constructor(private registerUserCase: RegisterUserUseCase) {
+export class SimulateNewTransationController {
+
+    constructor(private simulateNewTransationUseCase: SimulateNewTransationUseCase) {
     }
+
 
     async handle(request: Request, response: Response): Promise<Response> {
 
-        const user = request.body;
-        
-        const bodyLength = Object.keys(user).length;
+        const transation = request.body;
 
-        if (bodyLength < 7) {
+        const bodyLength = Object.keys(transation).length;
+
+        if (bodyLength < 4) {
             return response.status(400).json({
                 res: {
                     message: 'Error: Verify your body',
@@ -23,14 +24,13 @@ export class RegisterUserController {
         }
 
         try {
-            const cod_usu = await this.registerUserCase.execute(user);
 
-            const created_account = await createBankAccountUseCase.execute(cod_usu);
+            await this.simulateNewTransationUseCase.execute(transation); 
 
             return response.status(201).send({ 
                 res: {
-                    message: 'Success : Conta criada com sucesso',
-                    data: created_account
+                    message: 'Success : Successfully created transation',
+                    data: {}
                 }
             });
         }
