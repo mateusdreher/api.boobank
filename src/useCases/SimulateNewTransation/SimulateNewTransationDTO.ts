@@ -1,7 +1,7 @@
 export interface ISimulateNewTransationDTO {
     cod_usu: string;
     type: number;
-    value: string;
+    value: number;
     destiny: string;
     description: string;
 }
