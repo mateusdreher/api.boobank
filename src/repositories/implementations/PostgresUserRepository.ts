@@ -27,7 +27,7 @@ export class PostgresUserRepository implements IUsersRepository {
         return user;
     }
 
-    async register(user: User): Promise<string> {
+    async register(user: User): Promise<string | undefined> {
         await this.repositoryORM.save(user);
 
         return user.cod_usu;

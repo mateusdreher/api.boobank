@@ -13,7 +13,7 @@ export class LoginController {
         if (username === undefined || password === undefined) {
             return response.status(400).json({
                 res: {
-                    message: 'username and password must be provided',
+                    message: 'Error: username and password must be provided',
                     data: {}
                 }
             });
@@ -24,7 +24,7 @@ export class LoginController {
 
             return response.status(200).json({
                 res: {
-                    message: 'Successfully logged',
+                    message: 'Success: Successfully logged',
                     data: userInfos
                 }
             });

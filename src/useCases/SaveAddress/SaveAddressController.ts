@@ -1,10 +1,8 @@
 import { Request, Response } from 'express';
 import { SaveAddresUseCase } from './SaveAddressUseCase';
-import { ISaveAddressDTO } from './SaveAddressDTO';
 
 export class SaveAddressController {
     
-    private address: ISaveAddressDTO;
 
     constructor(private saveAddressUseCase: SaveAddresUseCase){
     }
@@ -12,22 +10,14 @@ export class SaveAddressController {
 
     async handle(request: Request, response: Response): Promise<Response> {
 
-        this.address = request.body;
+        const address = request.body;
 
-        const bodyLength = Object.keys(this.address).length; 
-        
-        if (bodyLength === 0) {
-            return response.status(400).json({
-                res: {
-                    message: 'Body cannot be empty',
-                    data: { }
-                }
-            });
-        }
+        const bodyLength = Object.keys(address).length; 
+
         if (bodyLength < 8) {
             return response.status(400).json({
                 res: {
-                    message: 'Verify you body info',
+                    message: 'Error : Verify you body info',
                     data: { }
                 }
             });
@@ -35,11 +25,11 @@ export class SaveAddressController {
 
 
         try {
-            await this.saveAddressUseCase.execute(this.address);
+            await this.saveAddressUseCase.execute(address);
 
             return response.status(201).json({
                 res: {
-                    message: 'Endereço cadastrado para o usuário',
+                    message: 'Success : Endereço cadastrado para o usuário',
                     data: { }
                 }
             });

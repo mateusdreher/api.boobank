@@ -5,5 +5,5 @@ export interface IUsersRepository {
     findByEmail(email: string): Promise<User | undefined>;
     findByUsername(username: string): Promise<User | undefined>;
     findByCpf(cpf: string):Promise<User | undefined>;
-    register(user: User): Promise<string>;
+    register(user: User): Promise<string | undefined>;
 }

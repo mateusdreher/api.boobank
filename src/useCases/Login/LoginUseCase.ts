@@ -5,8 +5,6 @@ import { generateJWTToken } from '@services/generateToken';
 
 export class LoginUseCase {
 
-    private userInfos: Record<string, string> ;
-
     constructor(private loginRepository: ILoginrepository){
     }
 
@@ -16,7 +14,7 @@ export class LoginUseCase {
 
         const user = await this.loginRepository.validateUsername(data.username);
 
-        if (!user) {
+        if (!user || !user.cod_usu) {
             throw new Error('Userr not exists');
         }
 
@@ -26,12 +24,12 @@ export class LoginUseCase {
             throw new Error('Invalid password');
         }
 
-        this.userInfos = {
+        const userInfos = {
             cod_usu: user.cod_usu,
             token: generateJWTToken(user.cod_usu)
         };
 
-        return this.userInfos;
+        return userInfos;
         
     }
 }

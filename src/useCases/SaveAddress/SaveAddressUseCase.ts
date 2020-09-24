@@ -14,10 +14,14 @@ export class SaveAddresUseCase {
 
         const address = new Address(data);
 
+        if (!address.id) {
+            throw new Error('Error : Error to save address');
+        }
+
         const idAlreadyExists = await this.addressRepository.findById(address.id);
 
         if (idAlreadyExists) {
-            throw new Error('Id já existe');
+            throw new Error('Error : Id já existe');
         }
 
         this.addressRepository.save(address);
