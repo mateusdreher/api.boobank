@@ -14,7 +14,7 @@ export class Transations {
     public type: number;
 
     @Column()
-    public value: string;
+    public value: number;
 
     @Column()
     public destiny: string;

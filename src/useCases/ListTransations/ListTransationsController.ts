@@ -8,7 +8,7 @@ export class ListTransationsConttroller {
 
     async handle(request: Request, response: Response): Promise<Response> {
 
-        const { cod_usu } = request.query;
+        const  cod_usu  = request.cod_usu;
 
         if(!cod_usu) {
             return response.status(400).json({

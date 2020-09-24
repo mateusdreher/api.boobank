@@ -5,6 +5,7 @@ import { saveAddressController } from '@useCases/SaveAddress';
 import { loginController } from '@useCases/Login';
 import { listTransationsConttroller } from '@useCases/ListTransations';
 import { simulateNewTransationController } from '@useCases/SimulateNewTransation';
+import { calculateBalanceController } from '@useCases/CalculateBalance';
 
 const router = Router();
 
@@ -34,6 +35,10 @@ router.get('/transations', authenticationMiddleware, (request: Request, response
 
 router.post('/transations', (request: Request, response: Response) => {
     return simulateNewTransationController.handle(request, response);
+});
+
+router.get('/balance', authenticationMiddleware, (request: Request, response: Response) => {
+    return calculateBalanceController.handle(request, response);
 });
 
 export { router };
