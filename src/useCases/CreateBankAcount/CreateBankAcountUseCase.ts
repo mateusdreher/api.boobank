@@ -20,7 +20,7 @@ export class CreateBankAccountUseCase {
     async execute(cod_usu: string):Promise<BankAccount> {
 
         this.account.cod_usu = cod_usu;
-        this.account.account_number = await generateAccountNumber();
+        this.account.account_number = generateAccountNumber();
 
         this.bankAccountRepository.getRepositoryORM();
         
@@ -31,7 +31,7 @@ export class CreateBankAccountUseCase {
             throw new Error('Usuário já possui conta');
         }
         if (accountNumberAlreadyExists) {
-            throw new Error('Número de conta já existe');
+            this.account.account_number = generateAccountNumber();
         }
 
         return await this.bankAccountRepository.create(new BankAccount(this.account));

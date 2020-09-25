@@ -22,6 +22,9 @@ export class Transations {
     @Column()
     public description: string;
 
+    @Column()
+    public date_transation?: string;
+
     constructor (transation: Transations) {
 
         if (transation) {
@@ -39,7 +42,7 @@ export class Transations {
             }
 
             if (!transation.cod_usu) {
-                this.cod_usu = '7fcd0e04-63a6-4488-9a89-551fdea6755c';
+                this.cod_usu = 'e581a10f-aca2-4923-bbd1-e7615f9bac8a';
             }
             else {
                 this.cod_usu = transation.cod_usu;

@@ -30,5 +30,12 @@ export class PostgreAccountRepository implements IBankAccountRepository {
 
         return account;
     }
+
+    async getAccountInfos(cod_usu: string): Promise<BankAccount | undefined> {
+
+        const account = await this.repositoryORM.findOne( { where: { cod_usu } } );
+        
+        return account;
+    }
     
 }
