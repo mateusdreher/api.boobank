@@ -10,12 +10,12 @@ import { verifyUserNameController } from '@useCases/VerifyUserName';
 
 const router = Router();
 
-router.get('/', (response: Response) => {
-    return response.status(200).send({
-        title: 'Api BooBank',
-        version: '0.0.2'
-    });
-});
+// router.get('/', (response: Response) => {
+//     response.send({
+//         title: 'Api BooBank',
+//         version: '0.0.2'
+//     });
+// });
 
 // Register
 router.post('/register', (request: Request, response: Response) => {

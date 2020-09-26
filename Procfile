@@ -1,0 +1,1 @@
+web: ts-node --files -r tsconfig-paths/register src/server.ts

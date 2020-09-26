@@ -10,7 +10,7 @@ export class PostgresTransationsRespository implements ITransationsRepository {
         this.repositoryORM = getRepository(Transations);
     }
 
-    async getTransations(cod_usu: string):Promise<Transations | undefined> {
+    async getTransations(cod_usu: string):Promise<Transations[] | undefined> {
         const transations = await this.repositoryORM.find({
             take: 10,  
             where: { cod_usu }  

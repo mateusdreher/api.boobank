@@ -1,23 +1,23 @@
 {
   "compilerOptions": {
-    
     "target": "es2017",                          
     "module": "commonjs",                     
-    "outDir": "./dist",                                       
+    "outDir": "./dist",
+    "rootDirs": [
+      "./",
+      "./dist"
+    ],
+    "typeRoots": ["src/@types"],                                      
     "removeComments": true,                            
     "strictPropertyInitialization": false,
     "strict": true,                                        
-    "typeRoots": [
-      "./node_modules/@types",
-      "./src/@types"
-    ],
-    "baseUrl": "./",                       
+    "baseUrl": "src",                       
     "paths": {
-      "@entities/*": ["src/entities/*"],
-      "@providers/*": ["src/providers/*"],
-      "@repositories/*": ["src/repositories/*"],
-      "@useCases/*": ["src/useCases/*"],
-      "@services/*": ["src/services/*"]
+      "@entities/*": ["entities/*"],
+      "@providers/*": ["providers/*"],
+      "@repositories/*": ["repositories/*"],
+      "@useCases/*": ["useCases/*"],
+      "@services/*": ["services/*"]
     },                            
     "esModuleInterop": true,                  
     "forceConsistentCasingInFileNames": true ,

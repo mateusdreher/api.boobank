@@ -8,7 +8,7 @@ export class ListTransationsUseCase {
     }
 
 
-    async execute(cod_usu: string): Promise<IListTransationsDTO | undefined> {
+    async execute(cod_usu: string): Promise<IListTransationsDTO[] | undefined> {
 
         this.transationsRepository.getRepositoryORM();
 

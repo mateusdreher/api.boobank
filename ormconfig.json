@@ -5,6 +5,7 @@
     "username": "postgres",
     "password": "fNh2uJm9Qc",
     "database": "boobank",
+    "logginng": true,
     "entities": [
        "src/entities/**/*.ts"
     ],

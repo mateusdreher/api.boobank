@@ -31,6 +31,7 @@ export class LoginController {
             });
         }
         catch(error) {
+            console.log(error);
             return response.status(400).json({
                 res: {
                     statusCode: error.message.split(':')[0].trim() || 6,

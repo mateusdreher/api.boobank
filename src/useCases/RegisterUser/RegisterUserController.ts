@@ -26,6 +26,15 @@ export class RegisterUserController {
         try {
             const cod_usu = await this.registerUserCase.execute(user);
 
+            if (!cod_usu) {
+                return response.status(400).json({
+                    res: {
+                        statusCode:  9, 
+                        message:  'Erro ao registrar o usuário',
+                        data: { }
+                    }
+                });
+            }
             const created_account = await createBankAccountUseCase.execute(cod_usu);
 
             return response.status(201).send({ 

@@ -18,7 +18,11 @@ export class CalculateBalanceUseCase {
 
         const transations = await this.transationRepository.getTransations(cod_usu);
 
-        Object.keys(transations).forEach((index) => {
+        if (!transations) {
+            throw new Error('8 : Não existem transações para o usuário');
+        }
+
+        Object.keys(transations).forEach((index: any) => {
             const item = transations[index];
 
             if (item.type === 0) {

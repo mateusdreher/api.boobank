@@ -2,7 +2,13 @@ import {  Request, Response, NextFunction } from 'express';
 import * as dataAuth from '../../auth.json'; 
 import * as jwt from 'jsonwebtoken';
 
-async function authenticationMiddleware(request: Request, response: Response, next: NextFunction) {
+interface ITokenData { 
+    id: string,
+    iat: number,
+    exp: number
+}
+
+async function authenticationMiddleware(request: Request, response: Response, next: NextFunction): Promise<void | Response> {
     const authHeader = <string>request.headers.auth;
 
     if (!authHeader) {
@@ -19,9 +25,9 @@ async function authenticationMiddleware(request: Request, response: Response, ne
 
 
     try {
-        const data = jwt.verify(token, dataAuth.secret);
+        const data: ITokenData = jwt.verify(token, dataAuth.secret) as ITokenData;
 
-        request.cod_usu = data.id;
+        request.cod_usu = data.id; 
 
         return next();
     }
