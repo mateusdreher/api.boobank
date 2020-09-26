@@ -15,10 +15,10 @@ export class PostgresUserRepository implements IUsersRepository {
         return user;
     }
 
-    async findByUsername(username: string): Promise<User | undefined> {
+    async findByUsername(username: string): Promise<string | undefined> {
         const user =  await this.repositoryORM.findOne({where: { username } });
 
-        return user;
+        return user?.username;
     }
 
     async findByCpf(cpf: string): Promise<User | undefined> {

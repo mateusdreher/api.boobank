@@ -1,12 +1,12 @@
 import { Router, Request, Response } from 'express';
 import { authenticationMiddleware } from './middlewares/authenticationMiddleware';
 import { registerUserController } from '@useCases/RegisterUser';
-import { saveAddressController } from '@useCases/SaveAddress';
 import { loginController } from '@useCases/Login';
 import { listTransationsConttroller } from '@useCases/ListTransations';
 import { simulateNewTransationController } from '@useCases/SimulateNewTransation';
 import { calculateBalanceController } from '@useCases/CalculateBalance';
 import { getAccountInfosController } from '@useCases/GetAccountInfos';
+import { verifyUserNameController } from '@useCases/VerifyUserName';
 
 const router = Router();
 
@@ -22,8 +22,8 @@ router.post('/register', (request: Request, response: Response) => {
     return registerUserController.handle(request, response);
 });
 
-router.post('/address', (request: Request, response: Response) => {
-    return saveAddressController.handle(request, response);
+router.get('/register', (request: Request, response: Response) => {
+    return verifyUserNameController.handle(request, response);
 });
 
 // Login

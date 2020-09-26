@@ -13,13 +13,8 @@ export class RegisterUserUseCase {
         this.userRepository.getRepositoryORM();
 
         const emailAlreadyExists = await this.userRepository.findByEmail(data.email);  
-        const usernameAlreadyExists = await this.userRepository.findByUsername(data.username);
 
         data.password = await bcrypt.hash(data.password, 10);
-
-        if (usernameAlreadyExists) {
-            throw new Error('Error: username already exists');
-        }
         
         if (emailAlreadyExists) {
             throw new Error('Error : email already exists');
