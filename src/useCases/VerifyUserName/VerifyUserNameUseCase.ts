@@ -12,7 +12,7 @@ export class VerifyUserNameUseCase {
         const usernameExists = await this.userRepository.findByUsername(username);
 
         if (usernameExists) {
-            throw new Error('Error: username already exists');
+            throw new Error('1 : username already exists');
         }
         
         return usernameExists;

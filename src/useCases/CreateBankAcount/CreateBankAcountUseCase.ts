@@ -28,7 +28,7 @@ export class CreateBankAccountUseCase {
         const accountNumberAlreadyExists = await this.bankAccountRepository.findByAccountNumber(this.account.account_number);
 
         if (userAlreadyHaveAccount) {
-            throw new Error('Usuário já possui conta');
+            throw new Error('2: User already have account');
         }
         if (accountNumberAlreadyExists) {
             this.account.account_number = generateAccountNumber();

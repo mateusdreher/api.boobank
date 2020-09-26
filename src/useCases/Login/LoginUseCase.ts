@@ -15,13 +15,13 @@ export class LoginUseCase {
         const user = await this.loginRepository.validateUsername(data.username);
 
         if (!user || !user.cod_usu) {
-            throw new Error('Userr not exists');
+            throw new Error('3: User not exists');
         }
 
         const validPassword = await bcrypt.compare(data.password, user.password);
 
         if (!validPassword) {
-            throw new Error('Invalid password');
+            throw new Error('4: Invalid password');
         }
 
         const userInfos = {

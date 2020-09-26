@@ -8,6 +8,7 @@ async function authenticationMiddleware(request: Request, response: Response, ne
     if (!authHeader) {
         return response.status(401).json({
             res: {
+                statusCode: 7,
                 message: 'Error: No auth token provided',
                 data: {}
             }
@@ -27,6 +28,7 @@ async function authenticationMiddleware(request: Request, response: Response, ne
     catch(error) {
         return response.status(401).json({
             res: {
+                statusCode: 7,
                 message: error.message || 'Error: Token invalid',
                 data: {}
             }

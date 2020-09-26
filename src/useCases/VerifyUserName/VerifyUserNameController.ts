@@ -14,6 +14,7 @@ export class VerifyUserNameController {
         if (!username) {
             return response.status(201).send({ 
                 res: {
+                    statuscode: 0,
                     message: 'Error : username not provided',
                     data: {}
                 }
@@ -25,16 +26,18 @@ export class VerifyUserNameController {
             
             return response.status(201).send({ 
                 res: {
+                    statusCode: 200,
                     message: 'OK : username available',
                     data: {}
                 }
             });
         }
         catch(error) {
-            return response.status(400).send({ 
+            return response.status(400).json({
                 res: {
-                    message: error.message || 'Unexpected Error',
-                    data: {}
+                    statusCode: error.message.split(':')[0].trim() || 6,
+                    message:  error.message.split(':')[1].trim() || 'Unexpected Error',
+                    data: { }
                 }
             });
         }
