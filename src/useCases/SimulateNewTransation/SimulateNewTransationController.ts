@@ -17,7 +17,8 @@ export class SimulateNewTransationController {
         if (bodyLength < 4) {
             return response.status(400).json({
                 res: {
-                    message: 'Error: Verify your body',
+                    statusCode: 0,
+                    message: 'Verify your body',
                     data: { }
                 }
             });
@@ -29,6 +30,7 @@ export class SimulateNewTransationController {
 
             return response.status(201).send({ 
                 res: {
+                    statusCode: 200,
                     message: 'Success : Successfully created transation',
                     data: {}
                 }
@@ -37,8 +39,9 @@ export class SimulateNewTransationController {
         catch(error) {
             return response.status(400).json({
                 res: {
-                    message: error.message || 'Unexpected Error',
-                    data: {}
+                    statusCode: error.message.split(':')[0].trim() || 6,
+                    message:  error.message.split(':')[1].trim() || 'Unexpected Error',
+                    data: { }
                 }
             });
         }

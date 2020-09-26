@@ -15,6 +15,7 @@ export class GetAccountInfosController {
 
             return response.status(201).send({ 
                 res: {
+                    statusCode: 200,
                     message: 'Success',
                     data: account
                 }
@@ -23,8 +24,9 @@ export class GetAccountInfosController {
         catch(error) {
             return response.status(400).json({
                 res: {
-                    message: error.message || 'Unexpected Error',
-                    data: {}
+                    statusCode: error.message.split(':')[0].trim() || 6,
+                    message:  error.message.split(':')[1].trim() || 'Unexpected Error',
+                    data: { }
                 }
             });
         }

@@ -13,6 +13,7 @@ export class LoginController {
         if (username === undefined || password === undefined) {
             return response.status(400).json({
                 res: {
+                    statusCode: 0,
                     message: 'Error: username and password must be provided',
                     data: {}
                 }
@@ -32,7 +33,8 @@ export class LoginController {
         catch(error) {
             return response.status(400).json({
                 res: {
-                    message:  error.message || 'Unexpected Error',
+                    statusCode: error.message.split(':')[0].trim() || 6,
+                    message:  error.message.split(':')[1].trim() || 'Unexpected Error',
                     data: { }
                 }
             });

@@ -14,6 +14,7 @@ export class CalculateBalanceController {
 
             return response.status(400).json({
                 res: {
+                    statusCode: 200,
                     message: 'Success',
                     data: balance
                 }
@@ -23,7 +24,8 @@ export class CalculateBalanceController {
         catch(error) {
             return response.status(400).json({
                 res: {
-                    message: error.message || 'Unexpected Error',
+                    statusCode: error.message.split(':')[0].trim() || 6,
+                    message:  error.message.split(':')[1].trim() || 'Unexpected Error',
                     data: { }
                 }
             });

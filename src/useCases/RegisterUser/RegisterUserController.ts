@@ -16,6 +16,7 @@ export class RegisterUserController {
         if (bodyLength < 7) {
             return response.status(400).json({
                 res: {
+                    statusCode: 0,
                     message: 'Error: Verify your body',
                     data: { }
                 }
@@ -29,6 +30,7 @@ export class RegisterUserController {
 
             return response.status(201).send({ 
                 res: {
+                    statuCode: 200,
                     message: 'Success : Conta criada com sucesso',
                     data: created_account
                 }
@@ -37,8 +39,9 @@ export class RegisterUserController {
         catch(error) {
             return response.status(400).json({
                 res: {
-                    message: error.message || 'Unexpected Error',
-                    data: {}
+                    statusCode: error.message.split(':')[0].trim() || 6,
+                    message:  error.message.split(':')[1].trim() || 'Unexpected Error',
+                    data: { }
                 }
             });
         }
