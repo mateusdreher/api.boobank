@@ -21,7 +21,7 @@ export class CreateBankAccountUseCase {
 
         this.account.cod_usu = cod_usu;
         this.account.account_number = generateAccountNumber();
-
+        
         this.bankAccountRepository.getRepositoryORM();
         
         const userAlreadyHaveAccount = await this.bankAccountRepository.findByCodUsu(this.account.cod_usu);
