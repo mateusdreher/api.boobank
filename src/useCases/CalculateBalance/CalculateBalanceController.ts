@@ -12,7 +12,7 @@ export class CalculateBalanceController {
         try {
             const balance = await this.calculateBalanceUseCase.execute(cod_usu);
 
-            return response.status(400).json({
+            return response.status(200).json({
                 res: {
                     statusCode: 200,
                     message: 'Success',
